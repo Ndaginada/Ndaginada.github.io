@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://kaikaigo.top/"/>
-  <updated>2018-07-10T10:01:27.552Z</updated>
+  <updated>2018-08-01T11:18:14.780Z</updated>
   <id>http://kaikaigo.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>es初次使用</title>
+    <link href="http://kaikaigo.top/2018/08/01/es%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8/"/>
+    <id>http://kaikaigo.top/2018/08/01/es初次使用/</id>
+    <published>2018-08-01T11:16:05.000Z</published>
+    <updated>2018-08-01T11:18:14.780Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Elasticsearch是一个高度可伸缩的开源全文搜索和分析引擎。它允许你以近实时的方式快速存储、搜索和分析大量的数据。它通常被用作基础的技术来赋予应用程序复杂的搜索特性和需求。</p></blockquote><p>[toc]</p><h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><h2 id="集群-Cluster"><a href="#集群-Cluster" class="headerlink" title="集群(Cluster)"></a>集群(Cluster)</h2><blockquote><p>一个集群由多个节点（Node）组成，通过所有的节点来存储数据，并且每个集群都有唯一的名字，默认是“elasticsearch”。</p></blockquote><h2 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点(Node)"></a>节点(Node)</h2><blockquote><p>一个节点是一个服务器，用来存储数据，并参与集群的索引与搜索。是组成集群的一部分，每个节点又一个唯一标识的名称UUID。</p></blockquote><h2 id="索引-index"><a href="#索引-index" class="headerlink" title="索引(index)"></a>索引(index)</h2><blockquote><p>是具有相似特性文档的集合，每个索引也有唯一的名字，可以对文档对数据进行搜索，更新，删除等操作。</p></blockquote><h2 id="类型-type"><a href="#类型-type" class="headerlink" title="类型(type)"></a>类型(type)</h2><blockquote><p>类型是索引中的一个分类，可以在索引中存储不同类型的文档。现在已不可能在同一个索引中创建多个类型，并且整个类型的概念将会在未来的版本中移除。</p></blockquote><p>6.0.0版本以后已不推荐使用:<br>以下翻译官方文档:</p><blockquote><p>一开始，我们我们谈到 一个 ES的索引类似于关系型数据库中的数据库，一个映射类型则相当于关系型数据库中的一张表。<br>这是一个错误的类比，导致了错误的假设。在一个关系型数据库中，表之间是相互独立的。一个表中的列与另一个表中同名的列没有关系。然而在映射类型中却不是这样的。<br>在一个Elasticsearch的索引中，有相同名称字段的不同映射类型在Lucene内部是由同一个字段支持的。换言之，看下面的这个例子，user 类型中的 user_name字段和tweet类型中的user_name字段实际上是被存储在同一个字段中，而且两个user_name字段在这两种映射类型中都有相同的定义（如类型都是 text或者都是date）。<br>这会导致一些问题，比如，当你希望在一个索引中的两个映射类型，一个映射类型中的 deleted 字段映射为一个日期数据类型的字段，而在另一个映射类型中的deleted字段映射为一个布尔数据类型的字段，这就会失败。<br>最重要的是，在一个索引中存储那些有很少或没有相同字段的实体会导致稀疏数据，并且干扰Lucene有效压缩文档的能力。</p></blockquote><h2 id="文档-Document"><a href="#文档-Document" class="headerlink" title="文档(Document)"></a>文档(Document)</h2><blockquote><p>是一个可被索引的基础单元</p></blockquote><h2 id="分片和复制-Shards-amp-Replicas"><a href="#分片和复制-Shards-amp-Replicas" class="headerlink" title="分片和复制(Shards &amp; Replicas)"></a>分片和复制(Shards &amp; Replicas)</h2><blockquote></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;Elasticsearch是一个高度可伸缩的开源全文搜索和分析引擎。它允许你以近实时的方式快速存储、搜索和分析大量的数据。它通常被用作基础的技术来赋予应用程序复杂的搜索特性和需求。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+      <category term="后端知识" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="elasticsearch" scheme="http://kaikaigo.top/tags/elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
