@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kaikaigo.top/"/>
-  <updated>2018-08-01T11:23:36.886Z</updated>
+  <updated>2018-08-07T15:32:23.643Z</updated>
   <id>http://kaikaigo.top/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在Jackson自定义序列化中使用@Autowired</title>
+    <link href="http://kaikaigo.top/2018/08/07/%E5%9C%A8Jackson%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E4%BD%BF%E7%94%A8-Autowired/"/>
+    <id>http://kaikaigo.top/2018/08/07/在Jackson自定义序列化中使用-Autowired/</id>
+    <published>2018-08-07T15:17:07.000Z</published>
+    <updated>2018-08-07T15:32:23.643Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="在Jackson自定义序列化中使用-Autowired"><a href="#在Jackson自定义序列化中使用-Autowired" class="headerlink" title="在Jackson自定义序列化中使用@Autowired"></a>在Jackson自定义序列化中使用@Autowired</h3><p> 开始直接使用@Autowired自动装配Bean时，总是null。<br> 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。<br> 解决方案有：</p><h5 id="创建两个构造器"><a href="#创建两个构造器" class="headerlink" title="创建两个构造器"></a>创建两个构造器</h5><p> 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例子将String参数序列化时转为List，代码如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringToByteListSerialize</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Spring自动装配构造函数</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringToByteListSerialize</span><span class="params">(ObjectMapper objectMapper)</span> </span>&#123;</span><br><span class="line">        StringToByteListSerialize.objectMapper = objectMapper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//JsonSerializer初始化构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringToByteListSerialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != s) &#123;</span><br><span class="line">            JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, Byte.class);</span><br><span class="line">            List&lt;Byte&gt; lst = objectMapper.readValue(s, javaType);</span><br><span class="line">            jsonGenerator.writeObject(lst);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过这次问题，确实感觉到了基础知识的重要性，比如说Spring框架Bean，依赖注入、Java初始化等基础知识。可能你会用一些框架做出东西，但是要做好或是遇到问题能快速定位，这就需要基础知识牢固，再者如果基础知识不行连源码都看不懂。所以基础知识很重要。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;在Jackson自定义序列化中使用-Autowired&quot;&gt;&lt;a href=&quot;#在Jackson自定义序列化中使用-Autowired&quot; class=&quot;headerlink&quot; title=&quot;在Jackson自定义序列化中使用@Autowired&quot;&gt;&lt;/a&gt;在Jack
+      
+    
+    </summary>
+    
+      <category term="后端" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Spring" scheme="http://kaikaigo.top/tags/Spring/"/>
+    
+      <category term="Jackson" scheme="http://kaikaigo.top/tags/Jackson/"/>
+    
+  </entry>
+  
+  <entry>
     <title>es初次使用</title>
     <link href="http://kaikaigo.top/2018/08/01/es%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8/"/>
     <id>http://kaikaigo.top/2018/08/01/es初次使用/</id>
     <published>2018-08-01T11:16:05.000Z</published>
-    <updated>2018-08-01T11:23:36.886Z</updated>
+    <updated>2018-08-07T15:32:09.251Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>Elasticsearch是一个高度可伸缩的开源全文搜索和分析引擎。它允许你以近实时的方式快速存储、搜索和分析大量的数据。它通常被用作基础的技术来赋予应用程序复杂的搜索特性和需求。</p></blockquote><h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><h2 id="集群-Cluster"><a href="#集群-Cluster" class="headerlink" title="集群(Cluster)"></a>集群(Cluster)</h2><blockquote><p>一个集群由多个节点（Node）组成，通过所有的节点来存储数据，并且每个集群都有唯一的名字，默认是“elasticsearch”。</p></blockquote><h2 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点(Node)"></a>节点(Node)</h2><blockquote><p>一个节点是一个服务器，用来存储数据，并参与集群的索引与搜索。是组成集群的一部分，每个节点又一个唯一标识的名称UUID。</p></blockquote><h2 id="索引-index"><a href="#索引-index" class="headerlink" title="索引(index)"></a>索引(index)</h2><blockquote><p>是具有相似特性文档的集合，每个索引也有唯一的名字，可以对文档对数据进行搜索，更新，删除等操作。</p></blockquote><h2 id="类型-type"><a href="#类型-type" class="headerlink" title="类型(type)"></a>类型(type)</h2><blockquote><p>类型是索引中的一个分类，可以在索引中存储不同类型的文档。现在已不可能在同一个索引中创建多个类型，并且整个类型的概念将会在未来的版本中移除。</p></blockquote><p>6.0.0版本以后已不推荐使用:<br>以下翻译官方文档:</p><blockquote><p>一开始，我们我们谈到 一个 ES的索引类似于关系型数据库中的数据库，一个映射类型则相当于关系型数据库中的一张表。<br>这是一个错误的类比，导致了错误的假设。在一个关系型数据库中，表之间是相互独立的。一个表中的列与另一个表中同名的列没有关系。然而在映射类型中却不是这样的。<br>在一个Elasticsearch的索引中，有相同名称字段的不同映射类型在Lucene内部是由同一个字段支持的。换言之，看下面的这个例子，user 类型中的 user_name字段和tweet类型中的user_name字段实际上是被存储在同一个字段中，而且两个user_name字段在这两种映射类型中都有相同的定义（如类型都是 text或者都是date）。<br>这会导致一些问题，比如，当你希望在一个索引中的两个映射类型，一个映射类型中的 deleted 字段映射为一个日期数据类型的字段，而在另一个映射类型中的deleted字段映射为一个布尔数据类型的字段，这就会失败。<br>最重要的是，在一个索引中存储那些有很少或没有相同字段的实体会导致稀疏数据，并且干扰Lucene有效压缩文档的能力。</p></blockquote><h2 id="文档-Document"><a href="#文档-Document" class="headerlink" title="文档(Document)"></a>文档(Document)</h2><blockquote><p>是一个可被索引的基础单元</p></blockquote><h2 id="分片和复制-Shards-amp-Replicas"><a href="#分片和复制-Shards-amp-Replicas" class="headerlink" title="分片和复制(Shards &amp; Replicas)"></a>分片和复制(Shards &amp; Replicas)</h2><blockquote></blockquote>]]></content>
     
@@ -37,7 +64,7 @@
     
     </summary>
     
-      <category term="后端知识" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF%E7%9F%A5%E8%AF%86/"/>
+      <category term="后端" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
       <category term="elasticsearch" scheme="http://kaikaigo.top/tags/elasticsearch/"/>
@@ -49,9 +76,9 @@
     <link href="http://kaikaigo.top/2018/07/10/test-my-site/"/>
     <id>http://kaikaigo.top/2018/07/10/test-my-site/</id>
     <published>2018-07-10T10:01:27.551Z</published>
-    <updated>2018-07-10T10:01:27.552Z</updated>
+    <updated>2018-08-07T15:32:40.874Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: Hello World<br>date: 2018-07-09 16:48:39<br>tags:</p><ul><li>test</li><li>hello</li></ul><hr><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><h3 id="你好啊"><a href="#你好啊" class="headerlink" title="你好啊"></a>你好啊</h3><blockquote><p>ni</p></blockquote><h4 id="nihao"><a href="#nihao" class="headerlink" title="nihao"></a>nihao</h4><h3 id="Hi"><a href="#Hi" class="headerlink" title="Hi"></a>Hi</h3><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>{    啊实打实的}</code></pre>]]></content>
+    <content type="html"><![CDATA[<hr><p>title: Hello World<br>date: 2018-07-09 16:48:39<br>tags:</p><ul><li>test</li></ul><hr><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><h3 id="你好啊"><a href="#你好啊" class="headerlink" title="你好啊"></a>你好啊</h3><blockquote><p>ni</p></blockquote><h4 id="nihao"><a href="#nihao" class="headerlink" title="nihao"></a>nihao</h4><h3 id="Hi"><a href="#Hi" class="headerlink" title="Hi"></a>Hi</h3><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>{    啊实打实的}</code></pre>]]></content>
     
     <summary type="html">
     
@@ -61,10 +88,9 @@
 &lt;p&gt;title: Hello World&lt;br&gt;date: 2018-07-09 16:48:39&lt;br&gt;tags:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;test&lt;/li&gt;
-&lt;li&gt;hello&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;Hello-World&quot;&gt;&lt;a hr
+&lt;h2 id=&quot;Hello-World&quot;&gt;&lt;a href=&quot;#Hello-Worl
       
     
     </summary>
