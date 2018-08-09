@@ -5,9 +5,9 @@
   <subtitle>Hello</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://kaikaigo.top/"/>
+  <link href="http://mkstudying.cn/"/>
   <updated>2018-08-07T15:32:23.643Z</updated>
-  <id>http://kaikaigo.top/</id>
+  <id>http://mkstudying.cn/</id>
   
   <author>
     <name>MingKai</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>在Jackson自定义序列化中使用@Autowired</title>
-    <link href="http://kaikaigo.top/2018/08/07/%E5%9C%A8Jackson%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E4%BD%BF%E7%94%A8-Autowired/"/>
-    <id>http://kaikaigo.top/2018/08/07/在Jackson自定义序列化中使用-Autowired/</id>
+    <link href="http://mkstudying.cn/2018/08/07/%E5%9C%A8Jackson%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E4%BD%BF%E7%94%A8-Autowired/"/>
+    <id>http://mkstudying.cn/2018/08/07/在Jackson自定义序列化中使用-Autowired/</id>
     <published>2018-08-07T15:17:07.000Z</published>
     <updated>2018-08-07T15:32:23.643Z</updated>
     
@@ -34,19 +34,19 @@
     
     </summary>
     
-      <category term="后端" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF/"/>
+      <category term="后端" scheme="http://mkstudying.cn/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="Spring" scheme="http://kaikaigo.top/tags/Spring/"/>
+      <category term="Spring" scheme="http://mkstudying.cn/tags/Spring/"/>
     
-      <category term="Jackson" scheme="http://kaikaigo.top/tags/Jackson/"/>
+      <category term="Jackson" scheme="http://mkstudying.cn/tags/Jackson/"/>
     
   </entry>
   
   <entry>
     <title>es初次使用</title>
-    <link href="http://kaikaigo.top/2018/08/01/es%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8/"/>
-    <id>http://kaikaigo.top/2018/08/01/es初次使用/</id>
+    <link href="http://mkstudying.cn/2018/08/01/es%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8/"/>
+    <id>http://mkstudying.cn/2018/08/01/es初次使用/</id>
     <published>2018-08-01T11:16:05.000Z</published>
     <updated>2018-08-07T15:32:09.251Z</updated>
     
@@ -64,17 +64,17 @@
     
     </summary>
     
-      <category term="后端" scheme="http://kaikaigo.top/categories/%E5%90%8E%E7%AB%AF/"/>
+      <category term="后端" scheme="http://mkstudying.cn/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="elasticsearch" scheme="http://kaikaigo.top/tags/elasticsearch/"/>
+      <category term="elasticsearch" scheme="http://mkstudying.cn/tags/elasticsearch/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="http://kaikaigo.top/2018/07/10/test-my-site/"/>
-    <id>http://kaikaigo.top/2018/07/10/test-my-site/</id>
+    <link href="http://mkstudying.cn/2018/07/10/test-my-site/"/>
+    <id>http://mkstudying.cn/2018/07/10/test-my-site/</id>
     <published>2018-07-10T10:01:27.551Z</published>
     <updated>2018-08-07T15:32:40.874Z</updated>
     
@@ -100,8 +100,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://kaikaigo.top/2018/07/09/hello-world/"/>
-    <id>http://kaikaigo.top/2018/07/09/hello-world/</id>
+    <link href="http://mkstudying.cn/2018/07/09/hello-world/"/>
+    <id>http://mkstudying.cn/2018/07/09/hello-world/</id>
     <published>2018-07-09T06:34:29.970Z</published>
     <updated>2018-07-09T06:34:29.971Z</updated>
     
