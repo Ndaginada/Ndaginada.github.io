@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="Spring,Jackson," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="在Jackson自定义序列化中使用@Autowired 开始直接使用@Autowired自动装配Bean时，总是null。 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。 解决方案有： 创建两个构造器 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例">
-<meta name="keywords" content="Spring,Jackson">
+<meta name="description" content="StringJava中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：12String s = &quot;123&quot;;s+=&quot;456&quot;; 看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Jackson自定义序列化中使用@Autowired">
-<meta property="og:url" content="http://mkstudying.cn/2018/08/07/在Jackson自定义序列化中使用-Autowired/index.html">
+<meta property="og:title" content="Java中String与StringBuilder">
+<meta property="og:url" content="http://mkstudying.cn/2018/08/15/Java中String与StringBuilder/index.html">
 <meta property="og:site_name" content="MingKai&#39;s Blog">
-<meta property="og:description" content="在Jackson自定义序列化中使用@Autowired 开始直接使用@Autowired自动装配Bean时，总是null。 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。 解决方案有： 创建两个构造器 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例">
+<meta property="og:description" content="StringJava中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：12String s = &quot;123&quot;;s+=&quot;456&quot;; 看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-07T15:32:23.643Z">
+<meta property="og:updated_time" content="2018-08-15T15:46:47.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Jackson自定义序列化中使用@Autowired">
-<meta name="twitter:description" content="在Jackson自定义序列化中使用@Autowired 开始直接使用@Autowired自动装配Bean时，总是null。 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。 解决方案有： 创建两个构造器 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例">
+<meta name="twitter:title" content="Java中String与StringBuilder">
+<meta name="twitter:description" content="StringJava中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：12String s = &quot;123&quot;;s+=&quot;456&quot;; 看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://mkstudying.cn/2018/08/07/在Jackson自定义序列化中使用-Autowired/"/>
+  <link rel="canonical" href="http://mkstudying.cn/2018/08/15/Java中String与StringBuilder/"/>
 
 
 
 
 
-  <title>在Jackson自定义序列化中使用@Autowired | MingKai's Blog</title>
+  <title>Java中String与StringBuilder | MingKai's Blog</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mkstudying.cn/2018/08/07/在Jackson自定义序列化中使用-Autowired/">
+    <link itemprop="mainEntityOfPage" href="http://mkstudying.cn/2018/08/15/Java中String与StringBuilder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MingKai">
@@ -288,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在Jackson自定义序列化中使用@Autowired</h2>
+          <h2 class="post-title" itemprop="name headline">Java中String与StringBuilder</h2>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T23:17:07+08:00">
-                2018-08-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T23:45:29+08:00">
+                2018-08-15
               </time>
             
 
@@ -360,9 +360,13 @@
       
 
       
-        <h3 id="在Jackson自定义序列化中使用-Autowired"><a href="#在Jackson自定义序列化中使用-Autowired" class="headerlink" title="在Jackson自定义序列化中使用@Autowired"></a>在Jackson自定义序列化中使用@Autowired</h3><p> 开始直接使用@Autowired自动装配Bean时，总是null。<br> 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。<br> 解决方案有：</p>
-<h5 id="创建两个构造器"><a href="#创建两个构造器" class="headerlink" title="创建两个构造器"></a>创建两个构造器</h5><p> 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例子将String参数序列化时转为List，代码如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringToByteListSerialize</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Spring自动装配构造函数</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringToByteListSerialize</span><span class="params">(ObjectMapper objectMapper)</span> </span>&#123;</span><br><span class="line">        StringToByteListSerialize.objectMapper = objectMapper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//JsonSerializer初始化构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringToByteListSerialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != s) &#123;</span><br><span class="line">            JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, Byte.class);</span><br><span class="line">            List&lt;Byte&gt; lst = objectMapper.readValue(s, javaType);</span><br><span class="line">            jsonGenerator.writeObject(lst);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过这次问题，确实感觉到了基础知识的重要性，比如说Spring框架Bean，依赖注入、Java初始化等基础知识。可能你会用一些框架做出东西，但是要做好或是遇到问题能快速定位，这就需要基础知识牢固，再者如果基础知识不行连源码都看不懂。所以基础知识很重要。</p>
+        <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Java中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"123"</span>;</span><br><span class="line">s+=<span class="string">"456"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会再创建一个s对象，赋值为123456，并将第一个s对象进行回收。所以这相当于是两个不同的对象了。</p>
+<h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>查看StringBuilder的源码，会发现默认构造函数会指定一个数值为16，这个默认数值是容量为16字符数组。一旦超出这个容量会使用Arrays.copyOf()进行成倍扩容，当然这样会影响性能，所以最好在创建StringBuilder对象时指定一个大小。</p>
+<h3 id="String与StringBuilder拼接比较"><a href="#String与StringBuilder拼接比较" class="headerlink" title="String与StringBuilder拼接比较"></a>String与StringBuilder拼接比较</h3><p>StringBuilder要比String快，通常字符串拼接使用StringBuilder来实现。</p>
+<p>但也不是所有情况都使用StringBuilder好，例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"123"</span> + <span class="string">"456"</span> + <span class="string">"789"</span>;</span><br><span class="line"></span><br><span class="line">String str2 = <span class="keyword">new</span> StringBuilder(<span class="string">"123"</span>).append(<span class="string">"456"</span>).append(<span class="string">"789"</span>).toString();</span><br></pre></td></tr></table></figure></p>
+<p>这种情况的String相当于Strnig str1 = “123456789”，而StringBuilder需要调用多次append()方法。<br>如果是下面这种情况，在for循环中，对字符串进行拼接的话StringBuilder当然更胜一筹：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder s = <span class="keyword">new</span> StringBuilder(<span class="string">"12345"</span>);</span><br><span class="line">String ss = <span class="string">"12345"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">    s.append(<span class="string">"12345"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">    ss+=<span class="string">"12345"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我做了个小测试StringBuilder完成只需要5毫秒，而String完成则需要500多毫秒，原因也很简单，在第一个例子里也有说到，String拼接时，会创建一个新的String对象，而在这个例子中会有大量的创建回收String对象。所以像这种有大量拼接操作的时候优先选择StringBuilder。<br>ps：当然如果使用IDEA这些操作都会有警告的 所以请不要忽视任何一个警告 :P</p>
 
       
     </div>
@@ -380,9 +384,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
-            <a href="/tags/Jackson/" rel="tag"># Jackson</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -395,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/01/es初次使用/" rel="next" title="es初次使用">
-                <i class="fa fa-chevron-left"></i> es初次使用
+              <a href="/2018/08/09/JPA动态条件查询/" rel="next" title="JPA动态条件查询">
+                <i class="fa fa-chevron-left"></i> JPA动态条件查询
               </a>
             
           </div>
@@ -404,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/09/JPA动态条件查询/" rel="prev" title="JPA动态条件查询">
-                JPA动态条件查询 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -604,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Jackson自定义序列化中使用-Autowired"><span class="nav-number">1.</span> <span class="nav-text">在Jackson自定义序列化中使用@Autowired</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建两个构造器"><span class="nav-number">1.0.1.</span> <span class="nav-text">创建两个构造器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuilder"><span class="nav-number">2.</span> <span class="nav-text">StringBuilder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String与StringBuilder拼接比较"><span class="nav-number">3.</span> <span class="nav-text">String与StringBuilder拼接比较</span></a></li></ol></div>
             
 
           </div>

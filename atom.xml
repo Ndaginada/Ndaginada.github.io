@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2018-08-09T15:20:37.724Z</updated>
+  <updated>2018-08-15T15:46:47.080Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中String与StringBuilder</title>
+    <link href="http://mkstudying.cn/2018/08/15/Java%E4%B8%ADString%E4%B8%8EStringBuilder/"/>
+    <id>http://mkstudying.cn/2018/08/15/Java中String与StringBuilder/</id>
+    <published>2018-08-15T15:45:29.000Z</published>
+    <updated>2018-08-15T15:46:47.080Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Java中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"123"</span>;</span><br><span class="line">s+=<span class="string">"456"</span>;</span><br></pre></td></tr></table></figure></p><p>看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会再创建一个s对象，赋值为123456，并将第一个s对象进行回收。所以这相当于是两个不同的对象了。</p><h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>查看StringBuilder的源码，会发现默认构造函数会指定一个数值为16，这个默认数值是容量为16字符数组。一旦超出这个容量会使用Arrays.copyOf()进行成倍扩容，当然这样会影响性能，所以最好在创建StringBuilder对象时指定一个大小。</p><h3 id="String与StringBuilder拼接比较"><a href="#String与StringBuilder拼接比较" class="headerlink" title="String与StringBuilder拼接比较"></a>String与StringBuilder拼接比较</h3><p>StringBuilder要比String快，通常字符串拼接使用StringBuilder来实现。</p><p>但也不是所有情况都使用StringBuilder好，例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"123"</span> + <span class="string">"456"</span> + <span class="string">"789"</span>;</span><br><span class="line"></span><br><span class="line">String str2 = <span class="keyword">new</span> StringBuilder(<span class="string">"123"</span>).append(<span class="string">"456"</span>).append(<span class="string">"789"</span>).toString();</span><br></pre></td></tr></table></figure></p><p>这种情况的String相当于Strnig str1 = “123456789”，而StringBuilder需要调用多次append()方法。<br>如果是下面这种情况，在for循环中，对字符串进行拼接的话StringBuilder当然更胜一筹：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder s = <span class="keyword">new</span> StringBuilder(<span class="string">"12345"</span>);</span><br><span class="line">String ss = <span class="string">"12345"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">    s.append(<span class="string">"12345"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">    ss+=<span class="string">"12345"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>我做了个小测试StringBuilder完成只需要5毫秒，而String完成则需要500多毫秒，原因也很简单，在第一个例子里也有说到，String拼接时，会创建一个新的String对象，而在这个例子中会有大量的创建回收String对象。所以像这种有大量拼接操作的时候优先选择StringBuilder。<br>ps：当然如果使用IDEA这些操作都会有警告的 所以请不要忽视任何一个警告 :P</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;&gt;&lt;/a&gt;String&lt;/h3&gt;&lt;p&gt;Java中String是经常用到的一个类，点开String源码可以看到，String是 final类，cha
+      
+    
+    </summary>
+    
+      <category term="后端" scheme="http://mkstudying.cn/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Java" scheme="http://mkstudying.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>JPA动态条件查询</title>
