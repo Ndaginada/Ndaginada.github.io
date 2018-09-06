@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2018-08-15T15:46:47.080Z</updated>
+  <updated>2018-09-06T15:45:37.521Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中强引用，软引用，弱引用，虚引用的了解</title>
+    <link href="http://mkstudying.cn/2018/09/06/Java%E4%B8%AD%E5%BC%BA%E5%BC%95%E7%94%A8%EF%BC%8C%E8%BD%AF%E5%BC%95%E7%94%A8%EF%BC%8C%E5%BC%B1%E5%BC%95%E7%94%A8%EF%BC%8C%E8%99%9A%E5%BC%95%E7%94%A8%E7%9A%84%E4%BA%86%E8%A7%A3/"/>
+    <id>http://mkstudying.cn/2018/09/06/Java中强引用，软引用，弱引用，虚引用的了解/</id>
+    <published>2018-09-06T15:43:32.000Z</published>
+    <updated>2018-09-06T15:45:37.521Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Java引用介绍"><a href="#Java引用介绍" class="headerlink" title="Java引用介绍"></a>Java引用介绍</h3><p> Java在JDK 1.2 对引用的概念进行了扩充，主要是为了更好的进行内存管理而设置的一套机制，粗俗的说就是不同的引用垃圾回收的力度不同。</p><blockquote><p>强引用 &gt; 软引用 &gt; 弱引用  &gt; 虚引用</p></blockquote><h3 id="强引用-StrongReference"><a href="#强引用-StrongReference" class="headerlink" title="强引用 StrongReference"></a>强引用 StrongReference</h3><blockquote><p> 强引用是最普遍的引用，一个对象如果被强引用那么垃圾回收器就永远不会收集,即使是OutOfMemory。类似于GirlFriend g = new GirlFriend()这类引用就是强引用;</p></blockquote><h3 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用 SoftReference"></a>软引用 SoftReference</h3><blockquote><p>软引用是在JVM内存即将不足时才会清理回收的对象，用来描述还有用但不是必须存在的对象。软引用可以使用java.lang.ref.SoftReference来实现</p></blockquote><h3 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用 WeakReference"></a>弱引用 WeakReference</h3><blockquote><p>弱引用存在感比软引用还要弱一些，是JVM在GC时只要发现弱引用就会回收。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。同样也有java.lang.ref.WeakReference</p></blockquote><h3 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用 PhantomReference"></a>虚引用 PhantomReference</h3><blockquote><p>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。虚引用职能在其指向的对象从内存中移除掉之后才会加入到引用队列</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Java引用介绍&quot;&gt;&lt;a href=&quot;#Java引用介绍&quot; class=&quot;headerlink&quot; title=&quot;Java引用介绍&quot;&gt;&lt;/a&gt;Java引用介绍&lt;/h3&gt;&lt;p&gt; Java在JDK 1.2 对引用的概念进行了扩充，主要是为了更好的进行内存管理而设置的一套
+      
+    
+    </summary>
+    
+      <category term="后端" scheme="http://mkstudying.cn/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Java" scheme="http://mkstudying.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java中String与StringBuilder</title>

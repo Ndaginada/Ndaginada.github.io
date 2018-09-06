@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java中强引用，软引用，弱引用，虚引用的了解]]></title>
+    <url>%2F2018%2F09%2F06%2FJava%E4%B8%AD%E5%BC%BA%E5%BC%95%E7%94%A8%EF%BC%8C%E8%BD%AF%E5%BC%95%E7%94%A8%EF%BC%8C%E5%BC%B1%E5%BC%95%E7%94%A8%EF%BC%8C%E8%99%9A%E5%BC%95%E7%94%A8%E7%9A%84%E4%BA%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[Java引用介绍 Java在JDK 1.2 对引用的概念进行了扩充，主要是为了更好的进行内存管理而设置的一套机制，粗俗的说就是不同的引用垃圾回收的力度不同。 强引用 &gt; 软引用 &gt; 弱引用 &gt; 虚引用 强引用 StrongReference 强引用是最普遍的引用，一个对象如果被强引用那么垃圾回收器就永远不会收集,即使是OutOfMemory。类似于GirlFriend g = new GirlFriend()这类引用就是强引用; 软引用 SoftReference 软引用是在JVM内存即将不足时才会清理回收的对象，用来描述还有用但不是必须存在的对象。软引用可以使用java.lang.ref.SoftReference来实现 弱引用 WeakReference 弱引用存在感比软引用还要弱一些，是JVM在GC时只要发现弱引用就会回收。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。同样也有java.lang.ref.WeakReference 虚引用 PhantomReference “虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。虚引用职能在其指向的对象从内存中移除掉之后才会加入到引用队列]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java中String与StringBuilder]]></title>
     <url>%2F2018%2F08%2F15%2FJava%E4%B8%ADString%E4%B8%8EStringBuilder%2F</url>
     <content type="text"><![CDATA[StringJava中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：12String s = "123";s+="456"; 看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会再创建一个s对象，赋值为123456，并将第一个s对象进行回收。所以这相当于是两个不同的对象了。 StringBuilder查看StringBuilder的源码，会发现默认构造函数会指定一个数值为16，这个默认数值是容量为16字符数组。一旦超出这个容量会使用Arrays.copyOf()进行成倍扩容，当然这样会影响性能，所以最好在创建StringBuilder对象时指定一个大小。 String与StringBuilder拼接比较StringBuilder要比String快，通常字符串拼接使用StringBuilder来实现。 但也不是所有情况都使用StringBuilder好，例如123String str1 = "123" + "456" + "789";String str2 = new StringBuilder("123").append("456").append("789").toString(); 这种情况的String相当于Strnig str1 = “123456789”，而StringBuilder需要调用多次append()方法。如果是下面这种情况，在for循环中，对字符串进行拼接的话StringBuilder当然更胜一筹：12345678StringBuilder s = new StringBuilder("12345");String ss = "12345";for (int i = 0; i &lt; 10000; i++) &#123; s.append("12345");&#125;for (int i = 0; i &lt; 10000; i++) &#123; ss+="12345";&#125; 我做了个小测试StringBuilder完成只需要5毫秒，而String完成则需要500多毫秒，原因也很简单，在第一个例子里也有说到，String拼接时，会创建一个新的String对象，而在这个例子中会有大量的创建回收String对象。所以像这种有大量拼接操作的时候优先选择StringBuilder。ps：当然如果使用IDEA这些操作都会有警告的 所以请不要忽视任何一个警告 :P]]></content>
