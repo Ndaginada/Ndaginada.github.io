@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Java中String与StringBuilder]]></title>
+    <url>%2F2018%2F08%2F15%2FJava%E4%B8%ADString%E4%B8%8EStringBuilder%2F</url>
+    <content type="text"><![CDATA[StringJava中String是经常用到的一个类，点开String源码可以看到，String是 final类，char数组value也是final类型，所以说String是不可变对象，一旦创建就不可更改，那么看一下下面这个代码：12String s = "123";s+="456"; 看到这段代码会使人感觉String是可变的，但JVM是这样做的：首先创建s对象，并赋值为123，之后到下一句会再创建一个s对象，赋值为123456，并将第一个s对象进行回收。所以这相当于是两个不同的对象了。 StringBuilder查看StringBuilder的源码，会发现默认构造函数会指定一个数值为16，这个默认数值是容量为16字符数组。一旦超出这个容量会使用Arrays.copyOf()进行成倍扩容，当然这样会影响性能，所以最好在创建StringBuilder对象时指定一个大小。 String与StringBuilder拼接比较StringBuilder要比String快，通常字符串拼接使用StringBuilder来实现。 但也不是所有情况都使用StringBuilder好，例如123String str1 = "123" + "456" + "789";String str2 = new StringBuilder("123").append("456").append("789").toString(); 这种情况的String相当于Strnig str1 = “123456789”，而StringBuilder需要调用多次append()方法。如果是下面这种情况，在for循环中，对字符串进行拼接的话StringBuilder当然更胜一筹：12345678StringBuilder s = new StringBuilder("12345");String ss = "12345";for (int i = 0; i &lt; 10000; i++) &#123; s.append("12345");&#125;for (int i = 0; i &lt; 10000; i++) &#123; ss+="12345";&#125; 我做了个小测试StringBuilder完成只需要5毫秒，而String完成则需要500多毫秒，原因也很简单，在第一个例子里也有说到，String拼接时，会创建一个新的String对象，而在这个例子中会有大量的创建回收String对象。所以像这种有大量拼接操作的时候优先选择StringBuilder。ps：当然如果使用IDEA这些操作都会有警告的 所以请不要忽视任何一个警告 :P]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JPA动态条件查询]]></title>
+    <url>%2F2018%2F08%2F09%2FJPA%E5%8A%A8%E6%80%81%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%2F</url>
+    <content type="text"><![CDATA[JPA动态条件查询最近使用JPA做ORM框架，JPA是具有面向对象思想的，比如Entity实体类与数据库表对应。 JPA在查询时刚开始用很不习惯，虽然也可以使用@Query写原生SQL。 如果使用JPA提供的接口查询可以使用JpaSpecificationExecutor先看一下JPA提供的接口： Repository：最顶层的接口，是一个空的接口，目的是为了统一所有Repository的类型，且能让组件扫描的时候自动识别。 CrudRepository ：是Repository的子接口，提供CRUD的功能 PagingAndSortingRepository：是CrudRepository的子接口，添加分页和排序的功能 JpaRepository：是PagingAndSortingRepository的子接口，增加了一些实用的功能，比如：批量操作等。 JpaSpecificationExecutor：用来做负责查询的接口 Specification：是Spring Data JPA提供的一个查询规范，要做复杂的查询，只需围绕这个规范来设置查询条件即可 我们可以看一下JpaSpecificationExecutor接口中有带有条件查询或是分页查询的方法1234567891011public interface JpaSpecificationExecutor&lt;T&gt; &#123; Optional&lt;T&gt; findOne(@Nullable Specification&lt;T&gt; var1); List&lt;T&gt; findAll(@Nullable Specification&lt;T&gt; var1); Page&lt;T&gt; findAll(@Nullable Specification&lt;T&gt; var1, Pageable var2); List&lt;T&gt; findAll(@Nullable Specification&lt;T&gt; var1, Sort var2); long count(@Nullable Specification&lt;T&gt; var1);&#125; 这里Specification接口可以构造出查询条件，Pageable接口可以构造出分页条件 然后我们在Repository中继承JpaSpecificationExecutor接口 12public interface HiJPARepository extends JpaRepository&lt;HiJPA, Long&gt;, JpaSpecificationExecutor&lt;HiJPA&gt; &#123;&#125; 接下来我们构造一个查询123456789101112131415161718Specification query = (root, criteriaQuery, criteriaBuilder) -&gt; &#123; List&lt;Predicate&gt; predicates = new ArrayList&lt;&gt;(); //if判断参数是否为空可以实现动态查询效果 if (null != type &amp;&amp; 0 &lt;= type) &#123; //相当于SQL中 type = #&#123;type&#125; predicates.add(criteriaBuilder.equal(root.get("type"), type)); &#125; if (null != userId &amp;&amp; 0 &lt;= userId) &#123; predicates.add(criteriaBuilder.equal(root.get("userId"), userId)); &#125; if (null != bookId &amp;&amp; 0 &lt;= bookId) &#123; predicates.add(criteriaBuilder.equal(root.get("bookId"), bookId)); &#125; criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]))); //使用orderBy进行排序 相当于SQL中 order by id desc criteriaQuery.orderBy(criteriaBuilder.desc(root.get("id"))); return criteriaQuery.getRestriction();&#125;; 然后使用List findAll(@Nullable Specification var1);方法将我们构造Specification传进去来进行查询，返回一个List列表。 当然我也是刚开始用JPA，更多的可以查看Spring的官方文档：https://docs.spring.io/spring-data/jpa/docs/2.1.0.RC1/reference/html/#repositories.limit-query-result]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>JPA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Jackson自定义序列化中使用@Autowired]]></title>
+    <url>%2F2018%2F08%2F07%2F%E5%9C%A8Jackson%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E4%BD%BF%E7%94%A8-Autowired%2F</url>
+    <content type="text"><![CDATA[在Jackson自定义序列化中使用@Autowired 开始直接使用@Autowired自动装配Bean时，总是null。 后来发现原来JsonSerializer初始化发生Spring自动装配之后，这样就会发生冲突。 解决方案有： 创建两个构造器 我们可以创建两个构造器，一个用来Spring构造函数注入Bean，另一个用来JsonSerializer的初始化，这样就可以解决这个问题。下面是一个例子将String参数序列化时转为List，代码如下： 12345678910111213141516171819202122232425@Componentpublic class StringToByteListSerialize extends JsonSerializer&lt;String&gt; &#123; private static ObjectMapper objectMapper; //Spring自动装配构造函数 @Autowired public StringToByteListSerialize(ObjectMapper objectMapper) &#123; StringToByteListSerialize.objectMapper = objectMapper; &#125; //JsonSerializer初始化构造函数 public StringToByteListSerialize() &#123; super(); &#125; @Override public void serialize(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException &#123; if (null != s) &#123; JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, Byte.class); List&lt;Byte&gt; lst = objectMapper.readValue(s, javaType); jsonGenerator.writeObject(lst); &#125; &#125;&#125; 总结通过这次问题，确实感觉到了基础知识的重要性，比如说Spring框架Bean，依赖注入、Java初始化等基础知识。可能你会用一些框架做出东西，但是要做好或是遇到问题能快速定位，这就需要基础知识牢固，再者如果基础知识不行连源码都看不懂。所以基础知识很重要。]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Jackson</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[es初次使用]]></title>
+    <url>%2F2018%2F08%2F01%2Fes%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Elasticsearch是一个高度可伸缩的开源全文搜索和分析引擎。它允许你以近实时的方式快速存储、搜索和分析大量的数据。它通常被用作基础的技术来赋予应用程序复杂的搜索特性和需求。 基础概念集群(Cluster) 一个集群由多个节点（Node）组成，通过所有的节点来存储数据，并且每个集群都有唯一的名字，默认是“elasticsearch”。 节点(Node) 一个节点是一个服务器，用来存储数据，并参与集群的索引与搜索。是组成集群的一部分，每个节点又一个唯一标识的名称UUID。 索引(index) 是具有相似特性文档的集合，每个索引也有唯一的名字，可以对文档对数据进行搜索，更新，删除等操作。 类型(type) 类型是索引中的一个分类，可以在索引中存储不同类型的文档。现在已不可能在同一个索引中创建多个类型，并且整个类型的概念将会在未来的版本中移除。 6.0.0版本以后已不推荐使用:以下翻译官方文档: 一开始，我们我们谈到 一个 ES的索引类似于关系型数据库中的数据库，一个映射类型则相当于关系型数据库中的一张表。这是一个错误的类比，导致了错误的假设。在一个关系型数据库中，表之间是相互独立的。一个表中的列与另一个表中同名的列没有关系。然而在映射类型中却不是这样的。在一个Elasticsearch的索引中，有相同名称字段的不同映射类型在Lucene内部是由同一个字段支持的。换言之，看下面的这个例子，user 类型中的 user_name字段和tweet类型中的user_name字段实际上是被存储在同一个字段中，而且两个user_name字段在这两种映射类型中都有相同的定义（如类型都是 text或者都是date）。这会导致一些问题，比如，当你希望在一个索引中的两个映射类型，一个映射类型中的 deleted 字段映射为一个日期数据类型的字段，而在另一个映射类型中的deleted字段映射为一个布尔数据类型的字段，这就会失败。最重要的是，在一个索引中存储那些有很少或没有相同字段的实体会导致稀疏数据，并且干扰Lucene有效压缩文档的能力。 文档(Document) 是一个可被索引的基础单元 分片和复制(Shards &amp; Replicas)]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2018%2F07%2F10%2Ftest-my-site%2F</url>
+    <content type="text"><![CDATA[title: Hello Worlddate: 2018-07-09 16:48:39tags: test Hello World你好啊 ni nihaoHipublic static void main(String args[]){ 啊实打实的 }]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F07%2F09%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
