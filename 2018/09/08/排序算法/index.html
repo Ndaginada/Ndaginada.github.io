@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据结构与算法," />
 
 
 
@@ -77,16 +77,21 @@
 
 
 
-<meta name="description" content="明凯的个人博客，主要分享一些后端知识和其他有趣的事情 :P">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MingKai&#39;s Blog">
-<meta property="og:url" content="http://mkstudying.cn/archives/2018/09/index.html">
+<meta name="description" content="简介首先看一下八大排序算法的关系：  从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。 那么这些排序算法哪个好用呢？_? 然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）   均按从小到大排列  k代表数值中的”数位”个数 n代表数据规模  m代表数据的最大值减最小值  所以选择算法的时候要考虑这些： 1.数据的规模 2.数据的类型 3.数据的初始顺序 一般来说，">
+<meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://mkstudying.cn/2018/09/08/排序算法/index.html">
 <meta property="og:site_name" content="MingKai&#39;s Blog">
-<meta property="og:description" content="明凯的个人博客，主要分享一些后端知识和其他有趣的事情 :P">
+<meta property="og:description" content="简介首先看一下八大排序算法的关系：  从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。 那么这些排序算法哪个好用呢？_? 然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）   均按从小到大排列  k代表数值中的”数位”个数 n代表数据规模  m代表数据的最大值减最小值  所以选择算法的时候要考虑这些： 1.数据的规模 2.数据的类型 3.数据的初始顺序 一般来说，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://mkstudying.cn/2018/09/08/排序算法/2018-09-08-排序算法/p-1.jpg">
+<meta property="og:image" content="http://mkstudying.cn/2018/09/08/排序算法/2018-09-08-排序算法/p-2.jpg">
+<meta property="og:updated_time" content="2018-09-08T09:22:37.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MingKai&#39;s Blog">
-<meta name="twitter:description" content="明凯的个人博客，主要分享一些后端知识和其他有趣的事情 :P">
+<meta name="twitter:title" content="排序算法">
+<meta name="twitter:description" content="简介首先看一下八大排序算法的关系：  从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。 那么这些排序算法哪个好用呢？_? 然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）   均按从小到大排列  k代表数值中的”数位”个数 n代表数据规模  m代表数据的最大值减最小值  所以选择算法的时候要考虑这些： 1.数据的规模 2.数据的类型 3.数据的初始顺序 一般来说，">
+<meta name="twitter:image" content="http://mkstudying.cn/2018/09/08/排序算法/2018-09-08-排序算法/p-1.jpg">
 
 
 
@@ -116,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://mkstudying.cn/archives/2018/09/"/>
+  <link rel="canonical" href="http://mkstudying.cn/2018/09/08/排序算法/"/>
 
 
 
 
 
-  <title>归档 | MingKai's Blog</title>
+  <title>排序算法 | MingKai's Blog</title>
   
 
 
@@ -151,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,111 +294,270 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 8 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mkstudying.cn/2018/09/08/排序算法/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MingKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MingKai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/08/排序算法/" itemprop="url">
-              
-                <span itemprop="name">排序算法</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">排序算法</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-08T17:08:23+08:00"
-              content="2018-09-08" >
-          09-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T17:08:23+08:00">
+                2018-09-08
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/08/排序算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/08/排序算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/06/Java中强引用，软引用，弱引用，虚引用的了解/" itemprop="url">
-              
-                <span itemprop="name">Java中强引用，软引用，弱引用，虚引用的了解</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-06T23:43:32+08:00"
-              content="2018-09-06" >
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>首先看一下八大排序算法的关系：</p>
+<p><img src="/2018/09/08/排序算法/2018-09-08-排序算法/p-1.jpg" alt="突突突"></p>
+<p>从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。</p>
+<p>那么这些排序算法哪个好用呢？_?</p>
+<p>然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）</p>
+<p><img src="/2018/09/08/排序算法/2018-09-08-排序算法/p-2.jpg" alt="突突突"></p>
+<ul>
+<li>均按从小到大排列 </li>
+<li>k代表数值中的”数位”个数</li>
+<li>n代表数据规模 </li>
+<li>m代表数据的最大值减最小值</li>
+</ul>
+<p>所以选择算法的时候要考虑这些：</p>
+<p>1.数据的规模</p>
+<p>2.数据的类型</p>
+<p>3.数据的初始顺序</p>
+<p>一般来说，数据规模小时，可以选择直接插入排序和冒泡排序。</p>
+<p>数据初始顺序如果比较有序时，使用快速排序也没其他的好。。。因为它会有一些不必要的步骤。</p>
+<p>所以要根据情况来分析算法的优劣。</p>
+<p>并且这些排序算法还可以改进。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxpay.jpg" alt="MingKai 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="MingKai 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/06/Java中强引用，软引用，弱引用，虚引用的了解/" rel="next" title="Java中强引用，软引用，弱引用，虚引用的了解">
+                <i class="fa fa-chevron-left"></i> Java中强引用，软引用，弱引用，虚引用的了解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +565,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -421,8 +592,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -523,6 +703,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -686,6 +882,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
