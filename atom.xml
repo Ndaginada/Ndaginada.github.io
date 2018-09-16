@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2018-09-08T09:28:56.186Z</updated>
+  <updated>2018-09-08T09:32:31.480Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -17,20 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>排序算法</title>
+    <title>排序算法简介</title>
     <link href="http://mkstudying.cn/2018/09/08/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     <id>http://mkstudying.cn/2018/09/08/排序算法/</id>
     <published>2018-09-08T09:08:23.000Z</published>
-    <updated>2018-09-08T09:28:56.186Z</updated>
+    <updated>2018-09-08T09:32:31.480Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>首先看一下八大排序算法的关系：</p><p><img src="/2018/09/08/排序算法/p-1.jpg" alt="突突突"></p><p>从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。</p><p>那么这些排序算法哪个好用呢？_?</p><p>然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）</p><p><img src="/2018/09/08/排序算法/p-2.jpg" alt="突突突"></p><ul><li>均按从小到大排列 </li><li>k代表数值中的”数位”个数</li><li>n代表数据规模 </li><li>m代表数据的最大值减最小值</li></ul><p>所以选择算法的时候要考虑这些：</p><p>1.数据的规模</p><p>2.数据的类型</p><p>3.数据的初始顺序</p><p>一般来说，数据规模小时，可以选择直接插入排序和冒泡排序。</p><p>数据初始顺序如果比较有序时，使用快速排序也没其他的好。。。因为它会有一些不必要的步骤。</p><p>所以要根据情况来分析算法的优劣。</p><p>并且这些排序算法还可以改进。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="排序算法简介"><a href="#排序算法简介" class="headerlink" title="排序算法简介"></a>排序算法简介</h3><p>首先看一下八大排序算法的关系：</p><p><img src="/2018/09/08/排序算法/p-1.jpg" alt="突突突"></p><p>从图中可以看到 八大排序算法是属于内部排序，而内部排序是在内存中进行的。</p><p>那么这些排序算法哪个好用呢？_?</p><p>然后来看一下这些算法的优劣：（来自维基百科(●ˇ∀ˇ●)）</p><p><img src="/2018/09/08/排序算法/p-2.jpg" alt="突突突"></p><ul><li>均按从小到大排列 </li><li>k代表数值中的”数位”个数</li><li>n代表数据规模 </li><li>m代表数据的最大值减最小值</li></ul><p>所以选择算法的时候要考虑这些：</p><p>1.数据的规模</p><p>2.数据的类型</p><p>3.数据的初始顺序</p><p>一般来说，数据规模小时，可以选择直接插入排序和冒泡排序。</p><p>数据初始顺序如果比较有序时，使用快速排序也没其他的好。。。因为它会有一些不必要的步骤。</p><p>所以要根据情况来分析算法的优劣。</p><p>并且这些排序算法还可以改进。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;首先看一下八大排序算法的关系：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2018/09/08/排序算法/p-1.jpg&quot; alt=&quot;突突突&quot;&gt;&lt;
+        &lt;h3 id=&quot;排序算法简介&quot;&gt;&lt;a href=&quot;#排序算法简介&quot; class=&quot;headerlink&quot; title=&quot;排序算法简介&quot;&gt;&lt;/a&gt;排序算法简介&lt;/h3&gt;&lt;p&gt;首先看一下八大排序算法的关系：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2018/09/08/排序算法/p-1.
       
     
     </summary>
