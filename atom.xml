@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2018-10-14T16:01:02.839Z</updated>
+  <updated>2018-10-14T16:03:11.891Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -21,15 +21,17 @@
     <link href="http://mkstudying.cn/2018/10/14/%E5%85%B3%E4%BA%8Eelasticsearch%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
     <id>http://mkstudying.cn/2018/10/14/关于elasticsearch中的节点/</id>
     <published>2018-10-14T15:59:32.000Z</published>
-    <updated>2018-10-14T16:01:02.839Z</updated>
+    <updated>2018-10-14T16:03:11.891Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="关于ES的节点-Node"><a href="#关于ES的节点-Node" class="headerlink" title="关于ES的节点(Node)"></a>关于ES的节点(Node)</h2><h3 id="什么是节点"><a href="#什么是节点" class="headerlink" title="什么是节点"></a>什么是节点</h3><blockquote><p>在ES集群环境中，一台服务器为一个节点，用来存储数据，参与集群的索引与搜索。</p></blockquote><h3 id="节点的类型"><a href="#节点的类型" class="headerlink" title="节点的类型"></a>节点的类型</h3><h4 id="2-X版本"><a href="#2-X版本" class="headerlink" title="2.X版本"></a>2.X版本</h4><table><thead><tr><th>节点类型</th><th>作用</th><th>配置</th></tr></thead><tbody><tr><td>Master(主节点)</td><td>主要用于元数据的处理，如索引的新增，删除，分片分配等</td><td>node.master:true  node.data:false</td></tr><tr><td>Data(数据节点)</td><td>数据节点保存了存储数据的分片，负责数据的相关操作</td><td>node.master:false  node.data:true</td></tr><tr><td>Client(路由节点)</td><td>路由节点不保存数据，主要负责请求路由，负载均衡</td><td>node.master:false  node.data:false</td></tr></tbody></table><blockquote><p>缺省配置node.master与node.data都为true，另外一个节点可以为主节点候选节点也可以为数据节点，但是集群规模大一些时还是要分清每个节点各自的作用</p></blockquote><h4 id="5-X版本的Ingest节点"><a href="#5-X版本的Ingest节点" class="headerlink" title="5.X版本的Ingest节点"></a>5.X版本的Ingest节点</h4><p> 在5.X版本的ES中引入了Ingest节点，主要用途为预处理请求，ingest节点拦截bulk和index请求，进行转换之后将documents传递回对应的api。每个节点都可以配置为ingest节点，默认情况下是启用ingest，可以通过<code>node.ingest: false</code>关闭ingest。ingest节点的负载会比较大，所以如果没有预处理需求，将ingest配置为关闭是比较好的选择。</p><h3 id="关于脑裂"><a href="#关于脑裂" class="headerlink" title="关于脑裂"></a>关于脑裂</h3><blockquote><p>脑裂就是一个集群中出现了多个主节点，</p></blockquote><h4 id="主节点是如何选举的"><a href="#主节点是如何选举的" class="headerlink" title="主节点是如何选举的"></a>主节点是如何选举的</h4><p> 主节点的选举由ZenDiscovery模块负责，选举方式为对所有候选节点(node.master: true)进行字典排序，每个节点将自己所知道的候选节点排序然后选出第一位暂定为主节点，如果某个节点的票数达到特定的值（n/2+1），并且该节点也选自己，那么这个节点就为主节点，否则继续重复之前的步骤。</p><h4 id="如何避免脑裂"><a href="#如何避免脑裂" class="headerlink" title="如何避免脑裂"></a>如何避免脑裂</h4><p>了解到主节点是如何选举的之后，在来看一下如何避免脑裂现象的发生。在候选节点有三个或以上时，可以通过<code>discovery.zen.minimum_master_nodes:</code>这个参数配置，这个配置就是告诉 Elasticsearch 当没有足够 master 候选节点的时候，就不要进行 master 节点选举，等 master 候选节点足够了才进行选举。将此配置设置为N/2+1，N为候选节点的个数。为什么要设定为这个数呢？举个例子，有10个候选人，规定最少5个人合谋决策可以选举出一位领导人，那么5个人选出一位来，另外5个人也够了人数限制，就会选出两位领导人了。</p><blockquote><p>PS：如果你有两个节点，你遇到难题了。法定数当然是  <code>2</code>  ，但是这意味着如果有一个节点挂掉，你整个集群就不可用了。 设置成  <code>1</code>  可以保证集群的功能，但是就无法保证集群脑裂了，像这样的情况，你最好至少保证有 3 个节点。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h3 id="什么是节点"><a href="#什么是节点" class="headerlink" title="什么是节点"></a>什么是节点</h3><blockquote><p>在ES集群环境中，一台服务器为一个节点，用来存储数据，参与集群的索引与搜索。</p></blockquote><h3 id="节点的类型"><a href="#节点的类型" class="headerlink" title="节点的类型"></a>节点的类型</h3><h4 id="2-X版本"><a href="#2-X版本" class="headerlink" title="2.X版本"></a>2.X版本</h4><table><thead><tr><th>节点类型</th><th>作用</th><th>配置</th></tr></thead><tbody><tr><td>Master(主节点)</td><td>主要用于元数据的处理，如索引的新增，删除，分片分配等</td><td>node.master:true  node.data:false</td></tr><tr><td>Data(数据节点)</td><td>数据节点保存了存储数据的分片，负责数据的相关操作</td><td>node.master:false  node.data:true</td></tr><tr><td>Client(路由节点)</td><td>路由节点不保存数据，主要负责请求路由，负载均衡</td><td>node.master:false  node.data:false</td></tr></tbody></table><blockquote><p>缺省配置node.master与node.data都为true，另外一个节点可以为主节点候选节点也可以为数据节点，但是集群规模大一些时还是要分清每个节点各自的作用</p></blockquote><h4 id="5-X版本的Ingest节点"><a href="#5-X版本的Ingest节点" class="headerlink" title="5.X版本的Ingest节点"></a>5.X版本的Ingest节点</h4><p> 在5.X版本的ES中引入了Ingest节点，主要用途为预处理请求，ingest节点拦截bulk和index请求，进行转换之后将documents传递回对应的api。每个节点都可以配置为ingest节点，默认情况下是启用ingest，可以通过<code>node.ingest: false</code>关闭ingest。ingest节点的负载会比较大，所以如果没有预处理需求，将ingest配置为关闭是比较好的选择。</p><h3 id="关于脑裂"><a href="#关于脑裂" class="headerlink" title="关于脑裂"></a>关于脑裂</h3><blockquote><p>脑裂就是一个集群中出现了多个主节点，</p></blockquote><h4 id="主节点是如何选举的"><a href="#主节点是如何选举的" class="headerlink" title="主节点是如何选举的"></a>主节点是如何选举的</h4><p> 主节点的选举由ZenDiscovery模块负责，选举方式为对所有候选节点(node.master: true)进行字典排序，每个节点将自己所知道的候选节点排序然后选出第一位暂定为主节点，如果某个节点的票数达到特定的值（n/2+1），并且该节点也选自己，那么这个节点就为主节点，否则继续重复之前的步骤。</p><h4 id="如何避免脑裂"><a href="#如何避免脑裂" class="headerlink" title="如何避免脑裂"></a>如何避免脑裂</h4><p>了解到主节点是如何选举的之后，在来看一下如何避免脑裂现象的发生。在候选节点有三个或以上时，可以通过<code>discovery.zen.minimum_master_nodes:</code>这个参数配置，这个配置就是告诉 Elasticsearch 当没有足够 master 候选节点的时候，就不要进行 master 节点选举，等 master 候选节点足够了才进行选举。将此配置设置为N/2+1，N为候选节点的个数。为什么要设定为这个数呢？举个例子，有10个候选人，规定最少5个人合谋决策可以选举出一位领导人，那么5个人选出一位来，另外5个人也够了人数限制，就会选出两位领导人了。</p><blockquote><p>PS：如果你有两个节点，你遇到难题了。法定数当然是  <code>2</code>  ，但是这意味着如果有一个节点挂掉，你整个集群就不可用了。 设置成  <code>1</code>  可以保证集群的功能，但是就无法保证集群脑裂了，像这样的情况，你最好至少保证有 3 个节点。</p></blockquote>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;关于ES的节点-Node&quot;&gt;&lt;a href=&quot;#关于ES的节点-Node&quot; class=&quot;headerlink&quot; title=&quot;关于ES的节点(Node)&quot;&gt;&lt;/a&gt;关于ES的节点(Node)&lt;/h2&gt;&lt;h3 id=&quot;什么是节点&quot;&gt;&lt;a href=&quot;#什么是节点&quot;
+        &lt;h3 id=&quot;什么是节点&quot;&gt;&lt;a href=&quot;#什么是节点&quot; class=&quot;headerlink&quot; title=&quot;什么是节点&quot;&gt;&lt;/a&gt;什么是节点&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;在ES集群环境中，一台服务器为一个节点，用来存储数据，参与集群的索引与搜索。&lt;/p&gt;
+&lt;/
       
     
     </summary>
