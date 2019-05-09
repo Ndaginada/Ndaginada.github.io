@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2018-10-14T16:03:11.891Z</updated>
+  <updated>2019-05-09T15:21:12.349Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库三大范式与反范式</title>
+    <link href="http://mkstudying.cn/2019/05/09/%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F/"/>
+    <id>http://mkstudying.cn/2019/05/09/三大范式与反范式/</id>
+    <published>2019-05-09T14:59:00.000Z</published>
+    <updated>2019-05-09T15:21:12.349Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>指表中列的信息不能被分割，只要是关系型数据库就满足</p><h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>第二范式建立在第一范式的基础上，要满足第二范式首先要满足第一范式，第二范式为每一列必须有唯一的标识，通常使用不包含业务逻辑的主键来实现。</p><h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>同上，满足第三范式也要满足第一第二范式。第三范式要求一张表中不能包含其他表中的非主键字段，也就是不要冗余其它表的非主键列，通常实现方式为拆分为多张表。</p><h3 id="反范式是什么"><a href="#反范式是什么" class="headerlink" title="反范式是什么"></a>反范式是什么</h3><p>没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低范式标准，适当保留冗余数据。具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，减少了查询时的关联，提高查询效率，因为在数据库的操作中查询的比例要远远大于DML的比例。但是反范式化一定要适度，并且在原本已满足三范式的基础上再做调整的。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>适当的冗余字段可以减少关联，提高查询性能，但是需要考虑数据的一致性。并且冗余字段应当是更新频率少，并且不是超长的字段。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第一范式&quot;&gt;&lt;a href=&quot;#第一范式&quot; class=&quot;headerlink&quot; title=&quot;第一范式&quot;&gt;&lt;/a&gt;第一范式&lt;/h3&gt;&lt;p&gt;指表中列的信息不能被分割，只要是关系型数据库就满足&lt;/p&gt;
+&lt;h3 id=&quot;第二范式&quot;&gt;&lt;a href=&quot;#第二范式&quot; cl
+      
+    
+    </summary>
+    
+      <category term="后端" scheme="http://mkstudying.cn/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="数据库" scheme="http://mkstudying.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>关于elasticsearch中的节点</title>

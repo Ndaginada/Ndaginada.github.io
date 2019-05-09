@@ -1,3 +1,4 @@
+http://mkstudying.cn/2019/05/09/三大范式与反范式/
 http://mkstudying.cn/2018/10/14/关于elasticsearch中的节点/
 http://mkstudying.cn/2018/09/08/排序算法/
 http://mkstudying.cn/2018/09/06/Java中强引用，软引用，弱引用，虚引用的了解/
