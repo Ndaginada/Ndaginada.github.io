@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mkstudying.cn/"/>
-  <updated>2019-05-09T15:21:12.349Z</updated>
+  <updated>2019-05-09T15:21:12.350Z</updated>
   <id>http://mkstudying.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://mkstudying.cn/2019/05/09/%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8F%8D%E8%8C%83%E5%BC%8F/"/>
     <id>http://mkstudying.cn/2019/05/09/三大范式与反范式/</id>
     <published>2019-05-09T14:59:00.000Z</published>
-    <updated>2019-05-09T15:21:12.349Z</updated>
+    <updated>2019-05-09T15:21:12.350Z</updated>
     
     <content type="html"><![CDATA[<h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>指表中列的信息不能被分割，只要是关系型数据库就满足</p><h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>第二范式建立在第一范式的基础上，要满足第二范式首先要满足第一范式，第二范式为每一列必须有唯一的标识，通常使用不包含业务逻辑的主键来实现。</p><h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>同上，满足第三范式也要满足第一第二范式。第三范式要求一张表中不能包含其他表中的非主键字段，也就是不要冗余其它表的非主键列，通常实现方式为拆分为多张表。</p><h3 id="反范式是什么"><a href="#反范式是什么" class="headerlink" title="反范式是什么"></a>反范式是什么</h3><p>没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低范式标准，适当保留冗余数据。具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，减少了查询时的关联，提高查询效率，因为在数据库的操作中查询的比例要远远大于DML的比例。但是反范式化一定要适度，并且在原本已满足三范式的基础上再做调整的。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>适当的冗余字段可以减少关联，提高查询性能，但是需要考虑数据的一致性。并且冗余字段应当是更新频率少，并且不是超长的字段。</p>]]></content>
     
@@ -100,7 +100,7 @@
     <link href="http://mkstudying.cn/2018/09/06/Java%E4%B8%AD%E5%BC%BA%E5%BC%95%E7%94%A8%EF%BC%8C%E8%BD%AF%E5%BC%95%E7%94%A8%EF%BC%8C%E5%BC%B1%E5%BC%95%E7%94%A8%EF%BC%8C%E8%99%9A%E5%BC%95%E7%94%A8%E7%9A%84%E4%BA%86%E8%A7%A3/"/>
     <id>http://mkstudying.cn/2018/09/06/Java中强引用，软引用，弱引用，虚引用的了解/</id>
     <published>2018-09-06T15:43:32.000Z</published>
-    <updated>2018-09-06T15:45:37.521Z</updated>
+    <updated>2018-09-06T15:45:37.522Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Java引用介绍"><a href="#Java引用介绍" class="headerlink" title="Java引用介绍"></a>Java引用介绍</h3><p> Java在JDK 1.2 对引用的概念进行了扩充，主要是为了更好的进行内存管理而设置的一套机制，粗俗的说就是不同的引用垃圾回收的力度不同。</p><blockquote><p>强引用 &gt; 软引用 &gt; 弱引用  &gt; 虚引用</p></blockquote><h3 id="强引用-StrongReference"><a href="#强引用-StrongReference" class="headerlink" title="强引用 StrongReference"></a>强引用 StrongReference</h3><blockquote><p> 强引用是最普遍的引用，一个对象如果被强引用那么垃圾回收器就永远不会收集,即使是OutOfMemory。类似于GirlFriend g = new GirlFriend()这类引用就是强引用;</p></blockquote><h3 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用 SoftReference"></a>软引用 SoftReference</h3><blockquote><p>软引用是在JVM内存即将不足时才会清理回收的对象，用来描述还有用但不是必须存在的对象。软引用可以使用java.lang.ref.SoftReference来实现</p></blockquote><h3 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用 WeakReference"></a>弱引用 WeakReference</h3><blockquote><p>弱引用存在感比软引用还要弱一些，是JVM在GC时只要发现弱引用就会回收。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。同样也有java.lang.ref.WeakReference</p></blockquote><h3 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用 PhantomReference"></a>虚引用 PhantomReference</h3><blockquote><p>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。虚引用职能在其指向的对象从内存中移除掉之后才会加入到引用队列</p></blockquote>]]></content>
     
